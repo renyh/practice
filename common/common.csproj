@@ -1,0 +1,79 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{58653586-420C-4060-942F-A47D1D613B35}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>common</RootNamespace>
+    <AssemblyName>common</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="core\ByteArray.cs" />
+    <Compile Include="core\ConfigSetting.cs" />
+    <Compile Include="core\ExceptionUtil.cs" />
+    <Compile Include="core\PriceUtil.cs" />
+    <Compile Include="core\Range.cs" />
+    <Compile Include="core\StringUtil.cs" />
+    <Compile Include="MarcHelper.cs" />
+    <Compile Include="MarcKernel\FieldNameList.cs" />
+    <Compile Include="MarcKernel\MarcDiff.cs" />
+    <Compile Include="MarcKernel\MarcHeaderStruct.cs" />
+    <Compile Include="MarcKernel\MarcUtil.cs" />
+    <Compile Include="MarcKernel\MarcXmlWriter.cs" />
+    <Compile Include="MarcQuery\MarcField.cs" />
+    <Compile Include="MarcQuery\MarcHeader.cs" />
+    <Compile Include="MarcQuery\MarcLoader.cs" />
+    <Compile Include="MarcQuery\MarcNavigator.cs" />
+    <Compile Include="MarcQuery\MarcNode.cs" />
+    <Compile Include="MarcQuery\MarcNodeList.cs" />
+    <Compile Include="MarcQuery\MarcQuery.cs" />
+    <Compile Include="MarcQuery\MarcRecord.cs" />
+    <Compile Include="MarcQuery\MarcSubfield.cs" />
+    <Compile Include="MarcQuery\NaviItem.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="rest\CookieAwareWebClient.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="rest\DataStructure.cs" />
+    <Compile Include="rest\IsbnSplitter.cs" />
+    <Compile Include="rest\RestChannel.cs" />
+    <Compile Include="rest\RestChannelPool.cs" />
+    <Compile Include="xml\DomUtil.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
