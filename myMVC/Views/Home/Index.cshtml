@@ -1,8 +1,58 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
+
+
 }
+@section Scripts {
+<script>
+    // 绑定账号
+    function saveField() {
+
+        //alert("1");
+        //var a=$("#_ab");
+        //alert("id="+a);
+        //alert("id="+a.attr("id"));
+
+
+         var field="";
+
+        $("#_marcEditor").find("._field").each(function (index) {
+            //alert(index);//循环的下标值，从0开始
+
+            //取出id
+            //alert($(this).attr("id"));
+
+            // 取出值
+            var id=$(this).attr("id");
+            var value=$(this).val();
+
+            //alert(id+"|"+value);
+            field+=id+"|"+value+"\r\n";
+
+        });
+
+        alert(field);
+
+
+        var dbName = $("#_selDbName").val();
+        alert(dbName);
+    }
+
+</script>
+}
+
+<div>@Html.Raw(ViewData["marcField"])</div>
+
+
+
+
 
 <div class="text-center">
     <h1 class="display-4">Welcome</h1>
     <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
 </div>
+
+<div id="_ab">test</div>
+
+
+
