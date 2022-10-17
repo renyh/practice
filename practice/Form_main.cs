@@ -413,6 +413,7 @@ namespace practice
                     out strError);
                 if (lRet == -1)
                 {
+                    this.textBox_result.Text = strError;
                     MessageBox.Show(this, strError);
                     return;
                 }
