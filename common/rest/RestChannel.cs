@@ -1731,6 +1731,8 @@ namespace DigitalPlatform.LibraryRestClient
             }
         }
 
+
+        // 检索册
         /*
         LibraryServerResult SearchItem(
             string strItemDbName,
@@ -1744,13 +1746,13 @@ namespace DigitalPlatform.LibraryRestClient
             string strOutputStyle);
 
          */
-        public long SearchItem(
-    string strItemDbName,
+        public long SearchItem(string strItemDbName,
     string strQueryWord,
     int nPerMax,
     string strFrom,
     string strMatchStyle,
     string strResultSetName,
+    string strSearchStyle,
      string strOutputStyle,
     out string strError)
         {
@@ -1773,7 +1775,7 @@ namespace DigitalPlatform.LibraryRestClient
 
                 request.strLang = "zh";
                 request.strResultSetName = strResultSetName;
-                request.strSearchStyle = "";// "desc";
+                request.strSearchStyle = strSearchStyle;// "";// "desc";
                 request.strOutputStyle = strOutputStyle;
 
 

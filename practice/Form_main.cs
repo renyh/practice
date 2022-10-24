@@ -230,13 +230,21 @@ namespace practice
 
         private void button_SearchBiblio_Click(object sender, EventArgs e)
         {
+
             RestChannel channel = this.GetChannel();
             try
             {
+                int nPerMax = 0;
+                if (this.SearchBiblio_textBox_PerMax.Text == "")
+                    nPerMax = -1;
+                else
+                    nPerMax = Convert.ToInt32(this.SearchBiblio_textBox_PerMax.Text);
+
+
                 //SearchBiblioResponse response 
                 long lRet= channel.SearchBiblio(this.SearchBiblio_textBox_BiblioDbNames.Text,
                     this.SearchBiblio_textBox_QueryWord.Text,
-                    Convert.ToInt32(this.SearchBiblio_textBox_PerMax.Text),
+                    nPerMax,
                     this.SearchBiblio_textBox_FromStyle.Text,
                     this.SearchBiblio_comboBox_MatchStyle.Text,
                     this.SearchBiblio_textBox_ResultSetName.Text,
@@ -285,7 +293,12 @@ namespace practice
                     StringBuilder browse = new StringBuilder();
                     foreach (Record record in records)
                     {
-                        browse.AppendLine( string.Join(",", record.Cols));
+                        browse.AppendLine(record.Path);
+
+                        if (record.Cols !=null && record.Cols.Length>0)
+                            browse.AppendLine( string.Join(",", record.Cols));
+                        if (string.IsNullOrEmpty(record.RecordBody.Xml)==false)
+                             browse.AppendLine(record.RecordBody.Xml);
                     }
                     this.textBox_result.Text += browse.ToString();
                 }
@@ -487,6 +500,54 @@ namespace practice
             this.textBox_result.Text = marc;
 
 
+        }
+
+        private void button_searchItem_Click(object sender, EventArgs e)
+        {
+            
+            RestChannel channel = this.GetChannel();
+            try
+            {
+                int nPerMax = 0;
+                if (this.searchItem_nPerMax.Text == "")
+                    nPerMax = -1;
+                else
+                    nPerMax = Convert.ToInt32(this.searchItem_nPerMax.Text);
+                /*
+                 * 
+public long SearchItem(string strItemDbName,
+    string strQueryWord,
+    int nPerMax,
+    string strFrom,
+    string strMatchStyle,
+    string strResultSetName,
+    string strSearchStyle,
+     string strOutputStyle,
+    out string strError)
+                 */
+                //SearchBiblioResponse response 
+                long lRet = channel.SearchItem(this.searchItem_strItemDbName.Text,
+                    this.searchItem_strQueryWord.Text,
+                    nPerMax,
+                    this.searchItem_strFrom.Text,
+                    this.searchItem_strMatchStyle.Text,
+                    this.searchItem_strResultSetName.Text,
+                    this.searchItem_strSearchStyle.Text,
+                    this.searchItem_strOutputStyle.Text,
+                    out string strError);
+                if (lRet == -1)
+                {
+                    this.textBox_result.Text = "error:" + strError;
+                }
+                else
+                {
+                    this.textBox_result.Text = "count:" + lRet;
+                }
+            }
+            finally
+            {
+                this._channelPool.ReturnChannel(channel);
+            }
         }
     }
 
