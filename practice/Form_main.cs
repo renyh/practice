@@ -271,6 +271,8 @@ namespace practice
 
         private void button_GetSearchResult_Click(object sender, EventArgs e)
         {
+            this.textBox_result.Text = "";
+
             RestChannel channel = this.GetChannel();
             try
             {
