@@ -297,7 +297,7 @@ namespace practice
 
                         if (record.Cols !=null && record.Cols.Length>0)
                             browse.AppendLine( string.Join(",", record.Cols));
-                        if (string.IsNullOrEmpty(record.RecordBody.Xml)==false)
+                        if (record.RecordBody !=null && string.IsNullOrEmpty(record.RecordBody.Xml)==false)
                              browse.AppendLine(record.RecordBody.Xml);
                     }
                     this.textBox_result.Text += browse.ToString();
